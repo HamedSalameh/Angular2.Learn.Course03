@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core'
+import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core'
 
 import { Passenger} from '../../models/passenger.interface';
 
@@ -38,7 +38,7 @@ import { Passenger} from '../../models/passenger.interface';
     </div>
     `
 })
-export class PassengerDetailComponent {
+export class PassengerDetailComponent implements OnChanges{
     @Input()
     detail: Passenger;
 
@@ -58,6 +58,11 @@ export class PassengerDetailComponent {
 
     onRemove(){
         this.remove.emit(this.detail);
+    }
+
+    ngOnChanges(changes){
+      // break the bond between the parent component and the child component objects
+      this.detail = Object.assign({}, changes.detail.currentValue);
     }
 
     toggleEdit(){
