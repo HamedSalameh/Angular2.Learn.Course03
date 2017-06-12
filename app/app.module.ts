@@ -5,7 +5,12 @@ import { FormsModule } from '@angular/forms'
 
 import { AppComponent } from './app.component';
 
+// containers
 import { PassengerDashboardModule } from './passenger-dashboard/passenger-dashboard.module';
+
+// services
+import { PassengerDashboardService} from './passenger-dashboard/passenger-dashboard.service';
+
 
 @NgModule(
   {
@@ -22,7 +27,10 @@ import { PassengerDashboardModule } from './passenger-dashboard/passenger-dashbo
     ],
     bootstrap: [
       AppComponent
-      ]
+      ],
+    providers: [
+      PassengerDashboardService
+    ]
   }
 )
 export class AppModule {
