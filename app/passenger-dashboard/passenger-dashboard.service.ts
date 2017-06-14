@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/toPromise';
 
 const PASSENGER_API = "/api/passengers";
 
@@ -12,10 +13,11 @@ export class PassengerDashboardService {
 
     constructor(private _http: Http ){}
 
-    getPassengers() : Observable<Passenger[]> {
+    getPassengers() : Promise<Passenger[]> {
         return this._http
         .get(PASSENGER_API)
-        .map((response: Response) => {
+        .toPromise()
+        .then((response: Response) => {
             return response.json();
         })
         ;
