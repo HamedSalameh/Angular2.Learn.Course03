@@ -6,7 +6,8 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['app.component.scss'],
   template: `
     <div class="app">
-      <passenger-dashboard></passenger-dashboard>
+      <passenger-viewer></passenger-viewer>
+      
     </div>
   `
 })

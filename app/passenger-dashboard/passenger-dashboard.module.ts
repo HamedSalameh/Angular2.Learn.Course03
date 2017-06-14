@@ -4,6 +4,7 @@ import { HttpModule } from '@angular/http';
 
 // containers
 import { PassengerDashboardComponent } from './containers/passenger-dashbaord/passenger-dashboard.component';
+import { PassengerViewerComponent } from './containers/passenger-viewer/passenger-viewer.component';
 
 // components
 import { PassengerCountComponent } from './components/passenger-count/passenger-count.component';
@@ -13,9 +14,14 @@ import { PassengerDetailComponent } from './components/passenger-detail/passenge
     bootstrap: [],
     declarations: 
     [
+        // containers
         PassengerDashboardComponent,
+        PassengerViewerComponent,
+
+        // components
         PassengerCountComponent,
-        PassengerDetailComponent
+        PassengerDetailComponent,
+        
     ],
     imports: [
         CommonModule,
@@ -23,7 +29,7 @@ import { PassengerDetailComponent } from './components/passenger-detail/passenge
     ],
     providers: [],
     exports: [
-        PassengerDashboardComponent
+        PassengerViewerComponent
     ]
 })
 export class PassengerDashboardModule {}

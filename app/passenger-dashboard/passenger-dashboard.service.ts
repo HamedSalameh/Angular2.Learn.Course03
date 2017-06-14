@@ -23,6 +23,16 @@ export class PassengerDashboardService {
         ;
     }
 
+    getPassenger(id: number) : Observable<Passenger> {
+        return this._http
+        .get(`${PASSENGER_API}/${id}`)
+        .map((response: Response) => {
+            return response.json();
+        })
+        .catch( (res: any) => Observable.throw(res.json()));
+        ;
+    }
+
     updatePassenger( passenger: Passenger) : Observable<Passenger>{
         let headers  = new Headers(
             {
