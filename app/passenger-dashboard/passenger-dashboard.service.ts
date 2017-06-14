@@ -13,13 +13,13 @@ export class PassengerDashboardService {
 
     constructor(private _http: Http ){}
 
-    getPassengers() : Promise<Passenger[]> {
+    getPassengers() : Observable<Passenger[]> {
         return this._http
         .get(PASSENGER_API)
-        .toPromise()
-        .then((response: Response) => {
+        .map((response: Response) => {
             return response.json();
         })
+        .catch( (res: any) => Observable.throw(res.json()));
         ;
     }
 
@@ -39,6 +39,7 @@ export class PassengerDashboardService {
         .map((response: Response) => {
             return response.json();
         })
+        .catch( (res: any) => Observable.throw(res.json()));
     }
 
     removePassenger( passenger: Passenger) : Observable<Passenger>{
@@ -47,6 +48,7 @@ export class PassengerDashboardService {
         .map((response: Response) => {
             return response.json();
         })
+        .catch( (res: any) => Observable.throw(res.json()));
     }
 
 }
