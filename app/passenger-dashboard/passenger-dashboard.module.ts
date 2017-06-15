@@ -9,6 +9,7 @@ import { PassengerViewerComponent } from './containers/passenger-viewer/passenge
 // components
 import { PassengerCountComponent } from './components/passenger-count/passenger-count.component';
 import { PassengerDetailComponent } from './components/passenger-detail/passenger-detail.component';
+import { PassengerFormComponent } from './components/passenger-form/passenger-form.component';
 
 @NgModule({
     bootstrap: [],
@@ -21,7 +22,7 @@ import { PassengerDetailComponent } from './components/passenger-detail/passenge
         // components
         PassengerCountComponent,
         PassengerDetailComponent,
-        
+        PassengerFormComponent
     ],
     imports: [
         CommonModule,
