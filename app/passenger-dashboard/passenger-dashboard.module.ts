@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpModule } from '@angular/http';
+import { FormsModule } from '@angular/forms';
 
 // containers
 import { PassengerDashboardComponent } from './containers/passenger-dashbaord/passenger-dashboard.component';
@@ -26,7 +27,8 @@ import { PassengerFormComponent } from './components/passenger-form/passenger-fo
     ],
     imports: [
         CommonModule,
-        HttpModule
+        HttpModule,
+        FormsModule
     ],
     providers: [],
     exports: [
