@@ -1,7 +1,7 @@
 {
   "passengers": [
     {
-      "fullname": "Nicole S",
+      "fullname": "Nicole",
       "id": 1,
       "checkedIn": false,
       "baggage": "none"

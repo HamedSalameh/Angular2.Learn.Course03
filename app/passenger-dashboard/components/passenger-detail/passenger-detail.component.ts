@@ -1,12 +1,12 @@
 import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core'
 
-import { Passenger} from '../../models/passenger.interface';
+import { Passenger } from '../../models/passenger.interface';
 
 @Component({
-    selector: 'passenger-detail',
-    styleUrls: ['passenger-detail.component.scss'],
-    template:
-    `
+  selector: 'passenger-detail',
+  styleUrls: ['passenger-detail.component.scss'],
+  template:
+  `
     <div>
         <span class="status" [class.checked-in]="detail.checkedIn"></span>
           <div *ngIf="editing">
@@ -31,41 +31,52 @@ import { Passenger} from '../../models/passenger.interface';
             <button (click)="onRemove()">
             Remove
             </button>
+          <div>
+            <button (click)="goToPassenger()">
+            View
+            </button>
           </div>
     </div>
     `
 })
-export class PassengerDetailComponent implements OnChanges{
-    @Input()
-    detail: Passenger;
+export class PassengerDetailComponent implements OnChanges {
+  @Input()
+  detail: Passenger;
 
-    @Output()
-    edit: EventEmitter<any> = new EventEmitter();
-    
-    @Output()
-    remove: EventEmitter<any> = new EventEmitter();
+  @Output()
+  edit: EventEmitter<Passenger> = new EventEmitter<Passenger>();
 
-    editing: boolean = false;
+  @Output()
+  remove: EventEmitter<Passenger> = new EventEmitter<Passenger>();
 
-    constructor(){}
+  @Output()
+  view: EventEmitter<Passenger> = new EventEmitter<Passenger>();
 
-    onNameChange(value: string) {
-        this.detail.fullname = value;
+  editing: boolean = false;
+
+  constructor() { }
+
+  onNameChange(value: string) {
+    this.detail.fullname = value;
+  }
+
+  onRemove() {
+    this.remove.emit(this.detail);
+  }
+
+  ngOnChanges(changes) {
+    // break the bond between the parent component and the child component objects
+    this.detail = Object.assign({}, changes.detail.currentValue);
+  }
+
+  toggleEdit() {
+    if (this.editing) {
+      this.edit.emit(this.detail);
     }
+    this.editing = !this.editing;
+  }
 
-    onRemove(){
-        this.remove.emit(this.detail);
-    }
-
-    ngOnChanges(changes){
-      // break the bond between the parent component and the child component objects
-      this.detail = Object.assign({}, changes.detail.currentValue);
-    }
-
-    toggleEdit(){
-        if (this.editing){
-            this.edit.emit(this.detail);
-        }
-        this.editing = !this.editing;
-    }
+  goToPassenger(){
+    this.view.emit(this.detail);
+  }
 }

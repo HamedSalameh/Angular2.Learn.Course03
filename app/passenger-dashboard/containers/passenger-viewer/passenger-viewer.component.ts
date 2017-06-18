@@ -12,6 +12,9 @@ import { Passenger} from '../../models/passenger.interface';
     template:
     `
     <div>
+        <button type="button" (click)="goBack()">
+        &lsaquo; Go Back
+        </button>
         <passenger-form
         [detail]="passenger"
         (update)="OnUpdatePassenger($event)"
@@ -30,6 +33,10 @@ export class PassengerViewerComponent implements OnInit{
         this._route.params
             .switchMap((data: Passenger) => this._service.getPassenger(data.id))
             .subscribe( (data: Passenger) => { this.passenger = data; console.log(data);} )
+    }
+
+    goBack(){
+        this._router.navigate(['/passengers']);
     }
 
     OnUpdatePassenger(event: Passenger){
