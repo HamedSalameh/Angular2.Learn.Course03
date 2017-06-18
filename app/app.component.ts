@@ -1,23 +1,23 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
+interface Nav {
+  link: string,
+  name: string,
+  exact: boolean
+}
+
 @Component({
   selector: 'app-root',
   styleUrls: ['app.component.scss'],
   template: `
   <div class="app">
     <div class="nav">
-      <a 
-        routerLink="/"
+      <a *ngFor="let item of nav"
+        [routerLink]="item.link"
         routerLinkActive="active"
-        [routerLinkActiveOptions]="{ exact : true }">
-        Home
-      </a>
-      <a 
-        routerLink="/oops"
-        routerLinkActive="active"
-        [routerLinkActiveOptions]="{ exact : true }">
-        404
+        [routerLinkActiveOptions]="{ exact : item.exact }">
+        {{ item.name }}
       </a>
       <router-outlet></router-outlet>
       
@@ -25,4 +25,19 @@ import { FormsModule } from '@angular/forms';
   </div>
   `
 })
-export class AppComponent{}
+export class AppComponent {
+
+  nav: Nav[] = [
+    {
+      link: '/',
+      name: 'Home',
+      exact: true
+    },
+    {
+      link: '/Oops',
+      name: '404',
+      exact: false
+    }
+  ]
+
+}
